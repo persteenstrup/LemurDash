@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <title>lemur_dash</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h1>Add to the Conspiracy of Lemurs!</h1>
+            </div>
+            <div class="panel-body">
+                <form action="/lemurs" method="POST">
+                    <label for="name">Lemur Name:</label>
+                    <input type="text" name='name' id="name">
+                    <p></p>
+                    <label for="age">Lemur Age:</label>
+                    <input type="text" name='age' id="age">
+                    <p></p>
+                    <input type="radio" id="male" name="sex" value="male">
+                    <label for="male">Male</label>
+
+                    <input type="radio" id="female" name="sex" value="female">
+                    <label for="female">Female</label>
+                    <p></p>
+                    <input class="btn btn-success" type="submit" value="Add to the Conspiracy!">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

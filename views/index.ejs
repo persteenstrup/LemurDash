@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="style.css">
+        <title>lemur_dash</title>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#submit").click(function(){
+                    alert("Lemur is being taken out back...")
+                    $("#formfield").submit();
+                });
+            });
+        </script>
+    </head>
+    <body> 
+        <div class="container"> 
+            <h2>Meet the Conspiracy of Lemurs!</h2>  
+            <% if (lemurs.length == 0){ %>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h1>YOUR CONSPIRACY IS EMPTY!</h1>
+                    </div>
+                </div>
+            <% } %>
+            
+            
+            <div class="panel-group">
+                <% for (var i in lemurs) { %>
+                <div class="panel panel-primary">
+                    <div class="panel-heading" style="height: 40px;" >
+                        <h4>Lemur Nr. <%= Number(i)+1 %>:</h4>
+                    </div>
+                    
+                    <div class="panel-body">
+                        <% if (lemurs[i].sex == "male"){ %>
+                            <h4>His name is <%= lemurs[i].name %> and he is <%= lemurs[i].age %> years old.</h4>
+                        <% } else { %>
+                            <h4>Her name is <%= lemurs[i].name %> and she is <%= lemurs[i].age %> years old.</h4>
+                        <% } %>
+                        <h5>id: <%= lemurs[i].id %></h5>
+                        <div class="row">
+                            <div class="col-md-2"> 
+                                <form action="/lemurs/edit/<%=lemurs[i].id %>" method="GET">
+                                    <input class="btn btn-info" id="test" type="submit" value="Edit this Lemur!">
+                                </form>
+                            </div>
+                            <div class="col-md-2" id="murder">
+                                <form action="/lemurs/destroy/<%=lemurs[i].id %>" method="POST" id="formfield"> 
+                                    <input type="button" id="submitBtn" name="kill" class="btn btn-danger" data-toggle="modal" data-target="#confirm-murder" value="Murder <%= lemurs[i].name %>">
+                                </form>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+            </div>
+            <a class="btn btn-primary" href="/lemurs/new">Add to the Conspiracy</a>        
+            <div class="modal fade" id="confirm-murder" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>Confirm Murder</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure you want to kill this Lemur?</p>
+                            <a href="#" id="submit" class="btn btn-danger">Yes</a>
+                            <button data-dismiss="modal" class="btn btn-info success">No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
